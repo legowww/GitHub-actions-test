@@ -1,5 +1,5 @@
 #!/bin/bash
-PROJECT_NAME="my-web-server"
+PROJECT_NAME="my-web"
 JAR_PATH="/home/ubuntu/my-web/build/libs/*.jar"
 DEPLOY_PATH=/home/ubuntu/$PROJECT_NAME/
 DEPLOY_LOG_PATH="/home/ubuntu/$PROJECT_NAME/deploy.log"
