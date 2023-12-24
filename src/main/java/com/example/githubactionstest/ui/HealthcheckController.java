@@ -9,6 +9,6 @@ public class HealthcheckController {
 
     @GetMapping("/hk")
     public String healthCheck() {
-        return "SERVER IS ALIVE";
+        return "SERVER IS ALIVE 12/24";
     }
 }

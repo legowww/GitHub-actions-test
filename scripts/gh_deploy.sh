@@ -1,6 +1,6 @@
 #!/bin/bash
-PROJECT_NAME="my-web"
-JAR_PATH="/home/ubuntu/my-web/build/libs/*.jar"
+PROJECT_NAME="server"
+JAR_PATH="/home/ubuntu/server/build/libs/*.jar"
 DEPLOY_PATH=/home/ubuntu/$PROJECT_NAME/
 DEPLOY_LOG_PATH="/home/ubuntu/$PROJECT_NAME/deploy.log"
 DEPLOY_ERR_LOG_PATH="/home/ubuntu/$PROJECT_NAME/deploy_err.log"

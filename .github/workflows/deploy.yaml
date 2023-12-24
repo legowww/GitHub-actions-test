@@ -6,9 +6,9 @@ on:
       - main
       - dev
 env:
-  S3_BUCKET_NAME: my-web-s3-bucket
-  CODE_DEPLOY_APPLICATION_NAME: my-code-deploy-app
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: my-code-deploy-group
+  S3_BUCKET_NAME: my-ec2-cp-bucket
+  CODE_DEPLOY_APPLICATION_NAME: my-code-delpoy
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: cdgrp
 
 jobs:
   build:
@@ -29,11 +29,11 @@ jobs:
         shell: bash
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew clean build
         shell: bash
 
       - name: Make zip file
-        run: zip -r ./$GITHUB_SHA .
+        run: zip -r ./$GITHUB_SHA . # ffac537e6cbbf934b08745a378932722df287a53.
         shell: bash
 
       - name: Configure AWS credentials
