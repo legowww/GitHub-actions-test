@@ -43,7 +43,7 @@ jobs:
           mkdir -p temp 
           cp build/libs/*.jar temp
           cp appspec.yml temp
-          cp scripts/*.sh temp
+          cp scripts/gh_deploy.sh temp
           cd temp
           mv *.jar legowww.jar
           zip -r $GITHUB_SHA .

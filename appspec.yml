@@ -24,6 +24,6 @@ hooks:
 
   # 내 Ec2 로 옮겨진 gh_deploy.sh 를 사용하는 것
   ApplicationStart:
-    - location: ./scripts/gh_deploy.sh
+    - location: ./gh_deploy.sh
       timeout: 60
       runas: ubuntu
