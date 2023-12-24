@@ -33,7 +33,7 @@ jobs:
         shell: bash
 
         # CodeDeploy 에 꼭 appspec.yml 을 보내줘야 한다.
-        # 1. jar 와 appspec.yml 을 저장할 디렉토리 temp 생성
+        # 1. jar 와 appspec.yml, script 를 저장할 디렉토리 temp 생성
         # 2. temp 에 jar 와 appspec.yml 복사
         # 3. temp 로 이동
         # 4. *.jar 의 이름을 legowww.jar 로 변경
@@ -43,6 +43,7 @@ jobs:
           mkdir -p temp 
           cp build/libs/*.jar temp
           cp appspec.yml temp
+          cp scripts/*.sh temp
           cd temp
           mv *.jar legowww.jar
           zip -r $GITHUB_SHA .
