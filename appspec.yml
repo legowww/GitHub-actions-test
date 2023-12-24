@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 # jar 만 이동
 files:
-  - source: ./GitHub-actions-test-0.0.1-SNAPSHOT.jar
+  - source: ./legowww.jar
     destination: /home/ubuntu/server
     overwrite: yes
 

@@ -35,13 +35,16 @@ jobs:
         # CodeDeploy 에 꼭 appspec.yml 을 보내줘야 한다.
         # 1. jar 와 appspec.yml 을 저장할 디렉토리 temp 생성
         # 2. temp 에 jar 와 appspec.yml 복사
-        # 3. temp 에 있는 파일들을 압축하여 $GITHUB_SHA.zip 로 생성
+        # 3. temp 로 이동
+        # 4. *.jar 의 이름을 legowww.jar 로 변경
+        # 5. temp 에 있는 파일들을 압축하여 $GITHUB_SHA.zip 로 생성
       - name: Make zip file
         run: |
           mkdir -p temp 
           cp build/libs/*.jar temp
           cp appspec.yml temp
           cd temp
+          mv *.jar legowww.jar
           zip -r $GITHUB_SHA .
         shell: bash
 
@@ -52,7 +55,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # 4. temp/$GITHUB_SHA.zip 파일을 S3에 전송
+      # 6. temp/$GITHUB_SHA.zip 파일을 S3에 전송
       - name: Upload to S3
         run: aws s3 cp --region ap-northeast-2 temp/$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
 

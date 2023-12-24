@@ -1,6 +1,6 @@
 #!/bin/bash
 PROJECT_NAME="server"
-JAR_PATH="/home/ubuntu/server/build/libs/*.jar"
+JAR_PATH="/home/ubuntu/server/legowww.jar"
 DEPLOY_PATH=/home/ubuntu/$PROJECT_NAME/
 DEPLOY_LOG_PATH="/home/ubuntu/$PROJECT_NAME/deploy.log"
 DEPLOY_ERR_LOG_PATH="/home/ubuntu/$PROJECT_NAME/deploy_err.log"
