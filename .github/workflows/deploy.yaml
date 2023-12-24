@@ -33,7 +33,7 @@ jobs:
         shell: bash
 
       - name: Make zip file
-        run: zip -r ./$GITHUB_SHA build/libs/*.jar # ffac537e6cbbf934b08745a378932722df287a53.
+        run: zip ./$GITHUB_SHA build/libs/*.jar # ffac537e6cbbf934b08745a378932722df287a53.
         shell: bash
 
       - name: Configure AWS credentials
