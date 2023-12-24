@@ -1,12 +1,12 @@
 #!/bin/bash
 PROJECT_NAME="server"
-JAR_PATH="/home/ubuntu/server/legowww.jar"
-DEPLOY_PATH=/home/ubuntu/$PROJECT_NAME/
+JAR_PATH="/home/ubuntu/server/*.jar"
+DEPLOY_PATH=/home/ubuntu/$PROJECT_NAME/  # /home/ubuntu/server/
 DEPLOY_LOG_PATH="/home/ubuntu/$PROJECT_NAME/deploy.log"
 DEPLOY_ERR_LOG_PATH="/home/ubuntu/$PROJECT_NAME/deploy_err.log"
 APPLICATION_LOG_PATH="/home/ubuntu/$PROJECT_NAME/application.log"
-BUILD_JAR=$(ls $JAR_PATH)
-JAR_NAME=$(basename $BUILD_JAR)
+BUILD_JAR=$(ls $JAR_PATH)  # /home/ubuntu/server/legowww.jar
+JAR_NAME=$(basename $BUILD_JAR)  # legowww.jar
 
 echo "===== 배포 시작 : $(date +%c) =====" >> $DEPLOY_LOG_PATH
 
@@ -15,9 +15,9 @@ echo "> build 파일 복사" >> $DEPLOY_LOG_PATH
 cp $BUILD_JAR $DEPLOY_PATH
 
 echo "> 현재 동작중인 어플리케이션 pid 체크" >> $DEPLOY_LOG_PATH
-CURRENT_PID=$(pgrep -f $JAR_NAME)
+CURRENT_PID=$(pgrep -f $JAR_NAME)  # pgrep -f legowww.jar -> 108638
 
-if [ -z $CURRENT_PID ]
+if [ -z $CURRENT_PID ]  # [ -z "문자열" ] 문자열이 NULL(비어있으면 참)
 then
   echo "> 현재 동작중인 어플리케이션 존재 X" >> $DEPLOY_LOG_PATH
 else
