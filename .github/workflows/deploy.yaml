@@ -32,15 +32,17 @@ jobs:
         run: ./gradlew clean build
         shell: bash
 
+        # CodeDeploy 에 꼭 appspec.yml 을 보내줘야 한다.
+        # 1. jar 와 appspec.yml 을 저장할 디렉토리 temp 생성
+        # 2. temp 에 jar 와 appspec.yml 복사
+        # 3. temp 에 있는 파일들을 압축하여 $GITHUB_SHA.zip 로 생성
       - name: Make zip file
         run: |
           mkdir -p temp 
           cp build/libs/*.jar temp/
           cp appspec.yml temp/
           cd temp
-          zip -r files .
-          cd ../ && mkdir -p temp2
-          mv temp/files.zip temp2/$GITHUB_SHA.zip
+          zip -r $GITHUB_SHA .
         shell: bash
 
       - name: Configure AWS credentials
@@ -51,7 +53,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 temp2/$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
+        run: aws s3 cp --region ap-northeast-2 temp/$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
 
       - name: Code Deploy
         run: |
