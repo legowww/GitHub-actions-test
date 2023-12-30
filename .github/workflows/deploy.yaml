@@ -32,7 +32,7 @@ jobs:
         run: ./gradlew clean build
         shell: bash
 
-        # CodeDeploy 에 꼭 appspec.yml 을 보내줘야 한다.
+        # CodeDeploy 에 사용할 script, 도커 파일, 도커 컴포즈와 appspec.yml 을 보내줘야 한다.
         # 1. jar 와 appspec.yml, script 를 저장할 디렉토리 temp 생성
         # 2. temp 에 jar 와 appspec.yml 복사
         # 3. temp 로 이동
@@ -56,7 +56,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # 6. temp/$GITHUB_SHA.zip 파일을 S3에 전송
+      # 6. temp 디렉토리의 $GITHUB_SHA.zip 파일을 S3에 전송
       - name: Upload to S3
         run: aws s3 cp --region ap-northeast-2 temp/$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
 

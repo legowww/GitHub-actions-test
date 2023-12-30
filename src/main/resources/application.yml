@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    default: spring1
+
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: spring1
+
+server:
+  port: 8081
+
+message: 'spring1'
+
+
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: spring2
+
+server:
+  port: 8082
+
+message: 'spring2'
+
